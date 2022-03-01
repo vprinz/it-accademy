@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from products.models import Product, ProductCategory
+
 
 # функции = представления = контроллеры
 
@@ -10,28 +12,14 @@ def index(request):
     return render(request, 'products/index.html', context)
 
 
-def products(request):
+def products(request, category_id=None):
+    if category_id:
+        products = Product.objects.filter(category_id=category_id)
+    else:
+        products = Product.objects.all()
     context = {
         'title': 'Store - Каталог',
-        'products': [
-            {
-                'name': 'Худи черного цвета с монограммами adidas Originals',
-                'description': 'Мягкая ткань для свитшотов. Стиль и комфорт – это образ жизни.',
-                'price': 6090,
-                'image': '/static/vendor/img/products/Adidas-hoodie.png',
-            },
-            {
-                'name': 'Синяя куртка The North Face',
-                'description': 'Гладкая ткань. Водонепроницаемое покрытие. Легкий и теплый пуховый наполнитель.',
-                'price': 23725,
-                'image': '/static/vendor/img/products/Blue-jacket-The-North-Face.png',
-            },
-            {
-                'name': 'Коричневый спортивный oversized-топ ASOS DESIGN',
-                'description': 'Материал с плюшевой текстурой. Удобный и мягкий.',
-                'price': 3390,
-                'image': '/static/vendor/img/products/Brown-sports-oversized-top-ASOS-DESIGN.png',
-            },
-        ]
+        'categories': ProductCategory.objects.all(),
+        'products': products,
     }
     return render(request, 'products/products.html', context)
