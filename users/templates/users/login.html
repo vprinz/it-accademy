@@ -10,15 +10,12 @@
                         {% if messages %} alert-success {% else %} alert-warning {% endif %}
                         alert-dismissible fade show" role="alert"
                              style="margin-top: 50px;">
-                            {% if messages %}
-                                {% for message in messages %}
-                                    {{ message }}
-                                {% endfor %}
-                            {% else %}
-                                {% for error in form.non_field_errors %}
-                                    {{ error }}
-                                {% endfor %}
-                            {% endif %}
+                            {% for message in messages %}
+                                {{ message }}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                                {{ error }}
+                            {% endfor %}
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
