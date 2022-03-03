@@ -145,3 +145,10 @@ EMAIL_HOST_USER = 'store-it-academy@yandex.ru'
 EMAIL_HOST_PASSWORD = 'qwertypP'
 EMAIL_USE_SSL = True
 DOMAIN_NAME = 'http://localhost:8000'
+
+# Celery & Redis settings
+
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_BROKER_URL = 'redis://localhost:6379'
