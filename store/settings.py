@@ -136,4 +136,4 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'django@store'
 EMAIL_HOST_PASSWORD = 'store'
 EMAIL_USE_SSL = False
-DOMAIN_NAME = 'localhost:8000'
+DOMAIN_NAME = 'http://localhost:8000'
