@@ -130,10 +130,18 @@ AUTH_USER_MODEL = 'users.User'
 
 # Sending e-email's
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'django@store'
-EMAIL_HOST_PASSWORD = 'store'
-EMAIL_USE_SSL = False
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_HOST = 'localhost'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'django@store'
+# EMAIL_HOST_PASSWORD = 'store'
+# EMAIL_USE_SSL = False
+# DOMAIN_NAME = 'http://localhost:8000'
+
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'store-it-academy@yandex.ru'
+EMAIL_HOST_PASSWORD = 'qwertypP'
+EMAIL_USE_SSL = True
 DOMAIN_NAME = 'http://localhost:8000'
