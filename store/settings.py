@@ -27,7 +27,20 @@ SECRET_KEY = 'django-insecure-hq5pzb&e!^0x0jzp9smtw0n^5-+ecx-hyw8ezm!r8^0=qq&lf+
 # Env
 
 env = environ.Env(
-    DEBUG=(bool)
+    DEBUG=(bool),
+    DOMAIN_NAME=(str),
+
+    EMAIL_BACKEND=(str),
+    EMAIL_HOST=(str),
+    EMAIL_PORT=(int),
+    EMAIL_HOST_USER=(str),
+    EMAIL_HOST_PASSWORD=(str),
+    EMAIL_USE_SSL=(bool),
+
+    REDIS_HOST=(str),
+    REDIS_PORT=(int),
+    CELERY_RESULT_BACKEND=(str),
+    CELERY_BROKER_URL=(str),
 )
 
 environ.Env.read_env(BASE_DIR / '.env')
@@ -89,12 +102,24 @@ WSGI_APPLICATION = 'store.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'd8laeo5qbt0g3l',
+            'USER': 'fwfaohqgwfbisj',
+            'PASSWORD': 'f38c96cbf8e8139592ce774ce4da5b5424f8b70347d74f88831b430b3c5e31ae',
+            'HOST': 'ec2-52-204-196-4.compute-1.amazonaws.com',
+            'PORT': '5432',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -155,10 +180,10 @@ EMAIL_USE_SSL = env('EMAIL_USE_SSL')
 
 # Celery & Redis settings
 
-REDIS_HOST = 'localhost'
-REDIS_PORT = 6379
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
-CELERY_BROKER_URL = 'redis://localhost:6379'
+REDIS_HOST = env('REDIS_HOST')
+REDIS_PORT = env('REDIS_PORT')
+CELERY_RESULT_BACKEND = env('CELERY_RESULT_BACKEND')
+CELERY_BROKER_URL = env('CELERY_BROKER_URL')
 
 # Django Heroku
 
