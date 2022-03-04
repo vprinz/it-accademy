@@ -64,6 +64,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework.authtoken',
+    'storages',
 
     'products',
     'users',
@@ -191,5 +192,5 @@ django_heroku.settings(locals())
 
 if not DEBUG:
     DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
-    DROPBOX_OAUTH2_TOKEN = 'sl.BDIZG1jsz0MOKKhVXo-ddR0Re7BUA5m3FO7XEsxfGH3FhToThlhp5R54f4Oqn0HqprJzuYCLtFH7OKS-37txpvJ1LddvJSEJ7EGXWPokmDmpOUKyLNzjogkmvW2KiRaocq0_SWOVxxQm'
+    DROPBOX_OAUTH2_TOKEN = 'sl.BDL-wCuyrKzfzEf18cQ1Y-dVaySe0_7EHFWh1Uh9Ac66d_WaIO7oqHE7yd65O-vh9usbUbvh48dKx0_1jN98R2rC9S0Uykl2cNghpt4gHMjVy5Ya6t-MfAwVreaZ_KsydzD_SoW2ZFqU'
     DROPBOX_ROOT_PATH = '/media'
