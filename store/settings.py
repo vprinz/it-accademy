@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import django_heroku
 
 from pathlib import Path
 
@@ -141,7 +142,6 @@ AUTH_USER_MODEL = 'users.User'
 # EMAIL_USE_SSL = False
 # DOMAIN_NAME = 'http://localhost:8000'
 
-
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = 'store-it-academy@yandex.ru'
@@ -150,8 +150,10 @@ EMAIL_USE_SSL = True
 DOMAIN_NAME = 'http://localhost:8000'
 
 # Celery & Redis settings
-
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_BROKER_URL = 'redis://localhost:6379'
+
+# Django Heroku
+django_heroku.settings(locals())
