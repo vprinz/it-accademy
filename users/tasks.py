@@ -14,6 +14,6 @@ def send_email_verification_task(user_id):
         user = User.objects.get(id=user_id)
         expiration = now() + timedelta(hours=48)
         record = EmailVerification.objects.create(code=uuid.uuid4(), user=user, expiration=expiration)
-        record.send_email_verification()
+        # record.send_email_verification()
     except Exception as e:
         print(e)
