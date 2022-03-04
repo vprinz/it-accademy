@@ -21,10 +21,11 @@ from django.conf import settings
 from rest_framework import routers
 
 from products.views.views import index
-from products.views.api_views import ProductCategoryViewSet
+from products.views.api_views import ProductCategoryViewSet, ProductViewSet
 
 router = routers.DefaultRouter()
-router.register(r'product-categories', ProductCategoryViewSet, basename='product_categories')
+router.register(r'product-categories', ProductCategoryViewSet, basename='api_product_categories')
+router.register(r'products', ProductViewSet, basename='api_products')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
