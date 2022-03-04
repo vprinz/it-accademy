@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import os
+import environ
 import django_heroku
 
 from pathlib import Path
@@ -22,10 +24,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-hq5pzb&e!^0x0jzp9smtw0n^5-+ecx-hyw8ezm!r8^0=qq&lf+'
 
+# Env
+
+env = environ.Env(
+    DEBUG=(bool)
+)
+
+environ.Env.read_env(BASE_DIR / '.env')
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['*']
+
+DOMAIN_NAME = env('DOMAIN_NAME')
 
 # Application definition
 
@@ -134,26 +146,20 @@ AUTH_USER_MODEL = 'users.User'
 
 # Sending e-email's
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# EMAIL_HOST = 'localhost'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'django@store'
-# EMAIL_HOST_PASSWORD = 'store'
-# EMAIL_USE_SSL = False
-# DOMAIN_NAME = 'http://localhost:8000'
-
-EMAIL_HOST = 'smtp.yandex.ru'
-EMAIL_PORT = 465
-EMAIL_HOST_USER = 'store-it-academy@yandex.ru'
-EMAIL_HOST_PASSWORD = 'qwertypP'
-EMAIL_USE_SSL = True
-DOMAIN_NAME = 'http://localhost:8000'
+EMAIL_BACKEND = env('EMAIL_BACKEND')
+EMAIL_HOST = env('EMAIL_BACKEND')
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_USE_SSL = env('EMAIL_USE_SSL')
 
 # Celery & Redis settings
+
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_BROKER_URL = 'redis://localhost:6379'
 
 # Django Heroku
+
 django_heroku.settings(locals())
