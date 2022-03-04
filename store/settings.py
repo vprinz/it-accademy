@@ -189,7 +189,7 @@ CELERY_BROKER_URL = env('CELERY_BROKER_URL')
 
 django_heroku.settings(locals())
 
-if DEBUG:
+if not DEBUG:
     DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
     DROPBOX_OAUTH2_TOKEN = 'sl.BDIZG1jsz0MOKKhVXo-ddR0Re7BUA5m3FO7XEsxfGH3FhToThlhp5R54f4Oqn0HqprJzuYCLtFH7OKS-37txpvJ1LddvJSEJ7EGXWPokmDmpOUKyLNzjogkmvW2KiRaocq0_SWOVxxQm'
     DROPBOX_ROOT_PATH = '/media'
