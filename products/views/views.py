@@ -3,7 +3,7 @@ from django.shortcuts import render
 from products.models import Product, ProductCategory
 
 
-# функции = представления = контроллеры
+# функции = представления = контроллеры = классы
 
 # request = HttpRequest
 
